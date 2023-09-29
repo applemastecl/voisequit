@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesador de Audio</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            background-color: blue;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 70%;
+        }
+        #fileInput {
+            display: none;
+        }
+        .fileLabel {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #processButton, #downloadButton {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Procesador de Audio</h1>
+        <label for="fileInput" class="fileLabel">Subir archivo</label>
+        <input type="file" id="fileInput">
+        <div id="filePath"></div>
+        <button id="processButton" class="fileLabel">Procesar</button>
+        <p id="processingText"></p>
+        <a id="downloadButton" class="fileLabel" download>Descargar</a>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const filePath = document.getElementById('filePath');
+        const processButton = document.getElementById('processButton');
+        const processingText = document.getElementById('processingText');
+        const downloadButton = document.getElementById('downloadButton');
+
+        fileInput.addEventListener('change', function() {
+            const fileName = fileInput.value.split('\\').pop();
+            filePath.textContent = 'Archivo seleccionado: ' + fileName;
+            processButton.style.display = 'block';
+        });
+
+        processButton.addEventListener('click', function() {
+            // Aquí puedes agregar la lógica para procesar el archivo, como invocar tu herramienta
+            // y mostrar el mensaje "Espere por favor, terminando de separar la voz"
+            processingText.textContent = 'Espere por favor, terminando de separar la voz';
+
+            // Simulación de tiempo de procesamiento (eliminar esta línea en la implementación real)
+            setTimeout(function() {
+                processingText.textContent = '';
+                downloadButton.style.display = 'block';
+            }, 3000); // Esto simula un proceso de 3 segundos, ajústalo según tus necesidades
+        });
+
+        downloadButton.addEventListener('click', function() {
+            // Aquí puedes agregar la lógica para descargar el archivo procesado
+            // Asegúrate de configurar el atributo 'href' con la URL de descarga
+            downloadButton.href = 'ruta_al_archivo_procesado'; // Reemplaza con la URL correcta
+        });
+    </script>
+</body>
+</html>
